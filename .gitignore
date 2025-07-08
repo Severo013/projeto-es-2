@@ -1,0 +1,26 @@
+### Java ###
+target/
+*.class
+
+### IntelliJ ###
+.idea/
+*.iml
+
+### Eclipse ###
+*.classpath
+*.project
+*.settings/
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Logs ###
+*.log
+
+### Docker ###
+*.env
+
+### Spring Boot ###
+*.jar
+*.war
