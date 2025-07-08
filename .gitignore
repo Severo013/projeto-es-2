@@ -5,6 +5,7 @@ target/
 ### IntelliJ ###
 .idea/
 *.iml
+/.idea/
 
 ### Eclipse ###
 *.classpath
