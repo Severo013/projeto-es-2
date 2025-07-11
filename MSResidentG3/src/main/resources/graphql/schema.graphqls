@@ -1,0 +1,31 @@
+type Resident {
+    id: ID
+    name: String!
+    email: String
+    phone: String
+    unit: Unit
+}
+
+type Unit {
+    id: ID!
+    number: String!
+    block: String
+}
+
+input ResidentInput {
+    id: ID
+    name: String!
+    email: String
+    phone: String
+}
+
+type Query {
+    findAllResidents: [Resident]
+    findResidentByCpf(cpf: String!): Resident
+}
+
+type Mutation {
+    saveResident(residentDto: ResidentInput!): Resident
+    updateResident(residentDto: ResidentInput!): Resident
+    deleteResident(id: ID!): Boolean
+}

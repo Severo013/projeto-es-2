@@ -1,13 +1,18 @@
 package br.unesp.rc.msresident;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsresidentApplication {
+public class MsresidentApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MsresidentApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MsresidentApplication.class, args);
+    }
 
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println("Tudo nosso carai");
+    }
 }
