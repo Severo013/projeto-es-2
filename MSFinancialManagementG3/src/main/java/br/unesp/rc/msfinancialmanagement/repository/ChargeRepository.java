@@ -4,8 +4,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import br.unesp.rc.msfinancialmanagement.entity.Charge;
 
-public interface ChargeRepository extends MongoRepository<Charge, Long> {
+public interface ChargeRepository extends MongoRepository<Charge, String> {
 
-    @Cacheable("charges")
-    Charge findById(long id);
 }

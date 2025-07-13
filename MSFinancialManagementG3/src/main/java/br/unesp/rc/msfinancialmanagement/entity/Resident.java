@@ -16,7 +16,7 @@ public class Resident implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private long residentId;
+    private String residentId;
     private ResidentType residentType;
 
     @DBRef

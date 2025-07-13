@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ChargeService {
@@ -16,20 +17,20 @@ public class ChargeService {
     public ChargeService() {
     }
 
-    public Charge save(Charge resident) {
-        return repository.save(resident);
+    public Charge save(Charge charge) {
+        return repository.save(charge);
     }
 
-    public Charge findById(long id) {
+    public Optional<Charge> findById(String id) {
         return repository.findById(id);
     }
 
-    public void delete(Long id) {
+    public void delete(String id) {
         repository.deleteById(id);
     }
 
-    public Charge update(Charge resident) {
-        return repository.save(resident);
+    public Charge update(Charge charge) {
+        return repository.save(charge);
     }
 
     public List<Charge> findAll() {

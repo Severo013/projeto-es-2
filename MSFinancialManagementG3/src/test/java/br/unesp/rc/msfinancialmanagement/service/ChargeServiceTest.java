@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +21,6 @@ class ChargeServiceTest {
 
     @Test
     void save() {
-//        entity = InstanceGenerator.getCharge();
         System.out.println("Charge entity created: " + entity);
         Charge savedEntity = residentService.save(entity);
         System.out.println("Charge entity saved: " + savedEntity);
@@ -29,8 +29,7 @@ class ChargeServiceTest {
 
     @Test
     void findByCpf() {
-        long id = 1L; // Assuming the ID is known or set in the test data
-        Charge foundEntity = residentService.findById(id);
+        Optional<Charge> foundEntity = residentService.findById(entity.getId());
         System.out.println("Charge entity found: " + foundEntity);
         assertNotNull(foundEntity);
         assertEquals(entity, foundEntity);
@@ -47,9 +46,9 @@ class ChargeServiceTest {
 
     @Test
     void delete() {
-        Long id = entity.getId();
+        String id = entity.getId();
         residentService.delete(id);
-        Charge deletedEntity = residentService.findById(entity.getId());
+        Optional<Charge> deletedEntity = residentService.findById(entity.getId());
         System.out.println("Charge entity after deletion: " + deletedEntity);
         assertNull(deletedEntity);
     }

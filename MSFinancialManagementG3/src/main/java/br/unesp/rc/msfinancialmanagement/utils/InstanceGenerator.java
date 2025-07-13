@@ -13,7 +13,7 @@ public class InstanceGenerator {
 
     public static Charge getCharge() {
         return Charge.builder()
-                .id(1L)
+                .id("1")
                 .value(500.0)
                 .emissionDate(new Date())
                 .dueDate(new Date(System.currentTimeMillis() + 30L * 24 * 60 * 60 * 1000)) // 30 days from now

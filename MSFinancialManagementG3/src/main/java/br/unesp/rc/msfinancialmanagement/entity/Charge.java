@@ -15,7 +15,7 @@ import java.util.List;
 public class Charge {
 
     @Id
-    private long id;
+    private String id;
 
     private double value;
     private Date emissionDate;
