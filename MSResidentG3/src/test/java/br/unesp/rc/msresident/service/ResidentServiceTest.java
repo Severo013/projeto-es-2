@@ -13,14 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ResidentServiceTest {
 
-    private Resident entity;
+    private Resident entity = InstanceGenerator.getResident("12345678900", "John");;
 
     @Autowired
     private ResidentService residentService = new ResidentService();
 
     @Test
     void save() {
-        entity = InstanceGenerator.getResident("12345678900", "John");
         System.out.println("Resident entity created: " + entity);
         Resident savedEntity = residentService.save(entity);
         System.out.println("Resident entity saved: " + savedEntity);
