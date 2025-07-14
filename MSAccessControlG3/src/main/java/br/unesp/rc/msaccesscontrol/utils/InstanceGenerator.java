@@ -21,7 +21,7 @@ public class InstanceGenerator {
                 .exit(null)
                 .status(VisitorStatus.WAITING)
                 .visitor(null)
-                .authorization(null)
+                .authorizations(null)
                 .build();
     }
 
@@ -31,7 +31,7 @@ public class InstanceGenerator {
                 .authorizationDateTime(LocalDateTime.now())
                 .status(AuthorizationStatus.PENDING)
                 .resident(null)
-                .visits(null)
+                .visit(null)
                 .build();
     }
 }

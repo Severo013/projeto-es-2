@@ -25,6 +25,6 @@ public class Person implements Serializable {
     @Column(name = "birth_date")
     private Date birthDate;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 11)
     private String cpf;
 }

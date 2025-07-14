@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import lombok.*;
+
 import java.util.Date;
 import java.util.List;
 import java.io.Serializable;
@@ -25,13 +26,10 @@ public class Charge implements Serializable {
     private Date dueDate;
     private String status;
     private ChargeType chargeType;
-
-    @DBRef
-    private Unit unit;
-
-    @DBRef
+    private List<Payment> payments;
     private Resident resident;
 
+    //remover?
     @DBRef
-    private List<Payment> payments;
+    private Unit unit;
 }

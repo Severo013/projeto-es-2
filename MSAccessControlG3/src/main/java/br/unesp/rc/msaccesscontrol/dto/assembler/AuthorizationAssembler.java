@@ -18,7 +18,7 @@ public class AuthorizationAssembler {
         Authorization authorization = new Authorization();
         authorization.setId(dto.getId());
         authorization.setAuthorizationDateTime(dto.getAuthorizationDateTime());
-        authorization.setStatus(dto.getStatus());
+        authorization.setStatus(dto.getStatus() != null ? AuthorizationStatus.valueOf(dto.getStatus()) : null);
 
         return authorization;
     }

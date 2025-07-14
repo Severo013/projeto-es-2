@@ -1,5 +1,6 @@
 package br.unesp.rc.msaccesscontrol.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,5 +22,15 @@ public class Visitor extends Person implements Serializable {
     private VisitorType visitorType;
 
     @OneToMany(mappedBy = "visitor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Visit> visits;
+
+    @Override
+    public String toString() {
+        return "Visitor{" +
+                "visitorType=" + visitorType +
+                ", id=" + getId() +
+                ", name='" + getName() + '\'' +
+                '}';
+    }
 }

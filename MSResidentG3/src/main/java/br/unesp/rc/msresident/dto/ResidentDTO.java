@@ -1,9 +1,7 @@
 package br.unesp.rc.msresident.dto;
 
-import br.unesp.rc.msresident.entity.ResidentType;
 import lombok.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -12,12 +10,10 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class ResidentDTO extends PersonDTO {
-    private ResidentType residentType;
-    private UnitDTO unit;
+    private String residentType;
 
-    public ResidentDTO(long id, String name, Date birthDate, String cpf, ContactDTO contact, List<AddressDTO> addresses, AccessDTO access, ResidentType residentType, UnitDTO unit) {
+    public ResidentDTO(long id, String name, String birthDate, String cpf, ContactDTO contact, List<AddressDTO> addresses, AccessDTO access, String residentType, UnitDTO unit) {
         super(id, name, birthDate, cpf, contact, addresses, access);
         this.residentType = residentType;
-        this.unit = unit;
     }
 }

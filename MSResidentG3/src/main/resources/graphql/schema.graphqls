@@ -15,17 +15,48 @@ type Unit {
 input ResidentInput {
     id: ID
     name: String!
+    birthDate: String
+    cpf: String!
+    contact: ContactInput
+    addresses: [AddressInput]
+    access: AccessInput
+    residentType: String
+}
+
+input ContactInput {
+    id: ID
     email: String
-    phone: String
+    phoneHome: String
+    cellPhone: String
+    phoneCommercial: String
+}
+
+input AddressInput {
+    id: ID
+    street: String
+    number: String
+    complement: String
+    neighborhood: String
+    city: String
+    state: String
+    zipCode: String
+}
+
+input AccessInput {
+    id: ID
+    user: String
+    password: String
 }
 
 type Query {
     findAllResidents: [Resident]
     findResidentByCpf(cpf: String!): Resident
+    validarAcesso(accessDto: AccessInput!): Int
 }
 
 type Mutation {
     saveResident(residentDto: ResidentInput!): Resident
     updateResident(residentDto: ResidentInput!): Resident
     deleteResident(id: ID!): Boolean
+    alugarUnidade(residentDto: ResidentInput!): Boolean
 }

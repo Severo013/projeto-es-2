@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Authorizations/v1")
+@RequestMapping("/authorizations/v1")
 public class AuthorizationResource {
 
     @Autowired
@@ -24,26 +24,29 @@ public class AuthorizationResource {
 
     @GetMapping("/{id}")
     public Optional<Authorization> getById(@PathVariable Long id) {
-        Optional<Authorization> Authorization = AuthorizationService.findById(id);
-        if (Authorization.isPresent()) {
-            return Authorization;
-        } else {
-            return null;
-        }
+        return AuthorizationService.findById(id);
     }
 
     @PostMapping("/")
-    public Authorization save(@RequestBody AuthorizationDTO AuthorizationDto) {
-        Authorization Authorization = AuthorizationAssembler.dtoToEntityModel(AuthorizationDto);
-        return AuthorizationService.save(Authorization);
+    public boolean save(@RequestBody AuthorizationDTO authorizationDto) {
+        boolean insert = false;
+
+        Authorization Authorization = AuthorizationAssembler.dtoToEntityModel(authorizationDto);
+        Authorization authorizationInsert = AuthorizationService.save(Authorization);
+
+        if (authorizationInsert != null) {
+            insert = true;
+        }
+
+        return insert;
     }
 
-    @PutMapping("/{id}")
-    public boolean update(@PathVariable Long id, @RequestBody AuthorizationDTO AuthorizationDto) {
-        Optional<Authorization> existingAuthorization = AuthorizationService.findById(id);
+    @PutMapping("/")
+    public boolean update(@RequestBody AuthorizationDTO authorizationDto) {
+        Optional<Authorization> existingAuthorization = AuthorizationService.findById(authorizationDto.getId());
         if (existingAuthorization.isPresent()) {
-            Authorization Authorization = AuthorizationAssembler.dtoToEntityModel(AuthorizationDto);
-            AuthorizationService.save(Authorization);
+            Authorization Authorization = AuthorizationAssembler.dtoToEntityModel(authorizationDto);
+            AuthorizationService.update(Authorization);
             return true;
         } else {
             return false;

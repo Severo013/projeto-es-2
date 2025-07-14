@@ -10,7 +10,6 @@ import java.util.Date;
 @ToString
 @EqualsAndHashCode
 public class PaymentDTO {
-
     private Date paymentDate;
     private double amountPaid;
     private String paymentMethod;

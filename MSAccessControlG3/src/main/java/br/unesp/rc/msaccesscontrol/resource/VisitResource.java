@@ -2,6 +2,8 @@ package br.unesp.rc.msaccesscontrol.resource;
 
 import br.unesp.rc.msaccesscontrol.dto.VisitDTO;
 import br.unesp.rc.msaccesscontrol.dto.assembler.VisitAssembler;
+import br.unesp.rc.msaccesscontrol.dto.assembler.VisitAssembler;
+import br.unesp.rc.msaccesscontrol.entity.Visit;
 import br.unesp.rc.msaccesscontrol.entity.Visit;
 import br.unesp.rc.msaccesscontrol.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Visits/v1")
+@RequestMapping("/visits/v1")
 public class VisitResource {
+
+    @Autowired
+    private VisitAssembler visitAssembler;
 
     @Autowired
     private VisitService VisitService;
@@ -24,26 +29,35 @@ public class VisitResource {
 
     @GetMapping("/{id}")
     public Optional<Visit> getById(@PathVariable Long id) {
-        Optional<Visit> Visit = VisitService.findById(id);
-        if (Visit.isPresent()) {
-            return Visit;
-        } else {
-            return null;
-        }
+        return VisitService.findById(id);
     }
 
     @PostMapping("/")
-    public Visit save(@RequestBody VisitDTO VisitDto) {
-        Visit Visit = VisitAssembler.dtoToEntityModel(VisitDto);
-        return VisitService.save(Visit);
+    public boolean save(@RequestBody VisitDTO visitDto) {
+        boolean insert = false;
+
+        Visit visit = visitAssembler.dtoToEntityModel(visitDto);
+        Visit visitInsert = VisitService.save(visit);
+
+        if (visitInsert != null) {
+            insert = true;
+        }
+
+        return insert;
     }
 
-    @PutMapping("/{id}")
-    public boolean update(@PathVariable Long id, @RequestBody VisitDTO VisitDto) {
-        Optional<Visit> existingVisit = VisitService.findById(id);
+    @PostMapping("/registrarVisita")
+    public String registrarVisita(@RequestBody VisitDTO visitDto) {
+        Visit visit = visitAssembler.dtoToEntityModel(visitDto);
+        return VisitService.registrarVisita(visit);
+    }
+
+    @PutMapping("/")
+    public boolean update(@RequestBody VisitDTO visitDto) {
+        Optional<Visit> existingVisit = VisitService.findById(visitDto.getId());
         if (existingVisit.isPresent()) {
-            Visit Visit = VisitAssembler.dtoToEntityModel(VisitDto);
-            VisitService.save(Visit);
+            Visit Visit = visitAssembler.dtoToEntityModel(visitDto);
+            VisitService.update(Visit);
             return true;
         } else {
             return false;

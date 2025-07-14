@@ -1,9 +1,9 @@
 package br.unesp.rc.msresident.resource;
 
+import br.unesp.rc.msresident.dto.AccessDTO;
 import br.unesp.rc.msresident.dto.ResidentDTO;
 import br.unesp.rc.msresident.dto.assembler.ResidentAssembler;
 import br.unesp.rc.msresident.entity.Resident;
-import br.unesp.rc.msresident.entity.Unit;
 import br.unesp.rc.msresident.service.ResidentService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -33,6 +33,7 @@ public class ResidentResource {
 
     @MutationMapping
     public Resident saveResident(@Argument ResidentDTO residentDto) {
+        System.out.println("Saving resident: " + residentDto);
         Resident resident = ResidentAssembler.dtoToEntityModel(residentDto);
         return residentService.save(resident);
     }
@@ -51,5 +52,16 @@ public class ResidentResource {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @MutationMapping
+    public boolean alugarUnidade(@Argument ResidentDTO residentDto) {
+        Resident resident = ResidentAssembler.dtoToEntityModel(residentDto);
+        return residentService.alugarUnidade(resident);
+    }
+
+    @QueryMapping
+    public Long validarAcesso(@Argument AccessDTO accessDto) {
+        return residentService.validarAcesso(accessDto);
     }
 }

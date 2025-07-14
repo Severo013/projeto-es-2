@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "visit")
@@ -39,7 +40,16 @@ public class Visit implements Serializable {
     @JoinColumn(name = "visitor_id", nullable = true)
     private Visitor visitor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "authorization_id", nullable = true)
-    private Authorization authorization;
+    @OneToMany(mappedBy = "visit", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Authorization> authorizations;
+
+    @Override
+    public String toString() {
+        return "Visit{" +
+                "id=" + id +
+                ", entry=" + entry +
+                ", exit=" + exit +
+                ", status=" + status +
+                '}';
+    }
 }

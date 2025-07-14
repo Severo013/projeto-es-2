@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +13,7 @@ public class AuthorizationDTO {
 
     private Long id;
     private LocalDateTime authorizationDateTime;
-    private AuthorizationStatus status;
+    private String status;
     private Long residentId;
-    private List<Long> visitIds;
+    private Long visitId;
 }

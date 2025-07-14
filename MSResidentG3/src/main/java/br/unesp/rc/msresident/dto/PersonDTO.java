@@ -11,7 +11,7 @@ import java.util.List;
 public class PersonDTO {
     private long id;
     private String name;
-    private Date birthDate;
+    private String birthDate;
     private String cpf;
     private ContactDTO contact;
     private List<AddressDTO> addresses;
