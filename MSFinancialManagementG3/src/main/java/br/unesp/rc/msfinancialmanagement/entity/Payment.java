@@ -5,13 +5,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import lombok.*;
 import java.util.Date;
+import java.io.Serializable;
 
 @Document(collection = "payments")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Payment {
+public class Payment implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     private String id;
